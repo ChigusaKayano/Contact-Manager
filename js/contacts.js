@@ -27,6 +27,7 @@ while (power === 1) { // if power = 0 program stop
         contactList.push(Contact);
         console.log("The contact have been added");
     } else if (ask === "2") {
+        console.log(`Here is your contact list ! (you have ${contactList.length} contact)`);
         for (let i = 0; i < contactList.length; i++) {
             console.log(contactList[i]);
         }
