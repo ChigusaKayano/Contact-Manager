@@ -14,6 +14,12 @@ class creatContact { // used for create one contact with 3 different information
     describe() { // used for describe the contact
         return ` Name : ${this.name} | Surname : ${this.surname} | about : ${this.about}\n`;
     }
+    getName() {
+        return (!!this.name);
+    }
+    getSurname() {
+       return (!!this.surname);
+    }
 }
 
 while (power === 1) { // if power = 0 program stop
@@ -24,8 +30,13 @@ while (power === 1) { // if power = 0 program stop
     } else if (ask === "1") {// put 1 in command prompt = create contact
         const contact = new creatContact(); // construct contact
         Contact = contact.describe(); // get contact info
-        contactList.push(Contact);
-        console.log("The contact have been added");
+        if (contact.getName() === true && contact.getSurname() === true) {
+            contactList.push(Contact);
+            console.log("The contact have been added");
+        }
+        else {
+            console.log(`The contact haven't been added `);
+        }
     } else if (ask === "2") {
         console.log(`Here is your contact list ! (you have ${contactList.length} contact)`);
         for (let i = 0; i < contactList.length; i++) {
