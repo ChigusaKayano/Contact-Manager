@@ -1,8 +1,9 @@
 /*open  line*/
-console.log(` 0 : Quit the program \n 1 : Create a new contact \n 2 : View actual contact`); //list of commands
+console.log('Welcome to my contact manager !');
+console.log(` 0 : Quit the program \n 1 : Create a new contact \n 2 : view your contact list`); //list of commands
 
 let power = 1; // used for start the program | if power = 0 program stop
-
+let contactList = []; // create a list for content all contact
 
 class creatContact { // used for create one contact with 3 different information
     constructor(name = prompt("Enter the name !"), surname = prompt("Enter the surname !"), about = prompt("Enter optional info !")) {
@@ -11,11 +12,9 @@ class creatContact { // used for create one contact with 3 different information
         this.about = about;
     }
     describe() { // used for describe the contact
-        return ` Name : ${this.name}\n Surname : ${this.surname}\n about : ${this.about}`;
+        return ` Name : ${this.name} Surname : ${this.surname} about : ${this.about}\n`;
     }
 }
-
-//for (i = 0,  , ) {}
 
 while (power === 1) { // if power = 0 program stop
     const ask = prompt("What's you will do ?");
@@ -25,6 +24,8 @@ while (power === 1) { // if power = 0 program stop
     } else if (ask === "1") {// put 1 in command prompt = create contact
         const contact = new creatContact(); // construct contact
         Contact = contact.describe(); // get contact info
+        contactList.push(Contact);
+        console.log("The contact have been added");
     } else if (ask === "2") {
-        console.log(Contact); // print contact info
+        console.log(contactList + "");
     }}
