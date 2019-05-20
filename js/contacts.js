@@ -12,7 +12,7 @@ class creatContact { // used for create one contact with 3 different information
         this.about = about;
     }
     describe() { // used for describe the contact
-        return ` Name : ${this.name} Surname : ${this.surname} about : ${this.about}\n`;
+        return ` Name : ${this.name} | Surname : ${this.surname} | about : ${this.about}\n`;
     }
 }
 
@@ -27,5 +27,8 @@ while (power === 1) { // if power = 0 program stop
         contactList.push(Contact);
         console.log("The contact have been added");
     } else if (ask === "2") {
-        console.log(contactList + "");
-    }}
+        for (let i = 0; i < contactList.length; i++) {
+            console.log(contactList[i]);
+        }
+    }
+}
