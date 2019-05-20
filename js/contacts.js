@@ -39,8 +39,9 @@ while (power === 1) { // if power = 0 program stop
         }
     } else if (ask === "2") {
         console.log(`Here is your contact list ! (you have ${contactList.length} contact)`); // message destined to user with number of contact
-        for (let i = 0; i < contactList.length; i++) { //
-            console.log(contactList[i]);
-        }
+        contactList.forEach(function (element) { // print contactList content for each thing in it
+            console.log(element);
+        })
+
     }
 }
