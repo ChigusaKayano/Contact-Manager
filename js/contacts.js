@@ -1,9 +1,30 @@
 /*open  line*/
 console.log('Welcome to my contact manager !');
-console.log(` 0 : Quit the program \n 1 : Create a new contact \n 2 : view your contact list`); //list of commands
+console.log(` 0 : Quit the program \n 1 : Create a new contact \n 2 : view your contact list \n 3 : Delete contact`); //list of commands
 //
 let power = 1; // used for start the program | if power = 0 program stop
 let contactList = []; // create a list for content all contact
+//
+class deleteContact {
+    constructor(choseContact = prompt(`Please Choose contact than you want delete !`)) {
+        this.choseContact = choseContact;
+    }
+    getContactPlace() {
+        return this.choseContact - 1;
+    }
+    verification(deletVerification = prompt(`Please confirm delete contact (enter "yes")`)) {
+        this.deletVerification = deletVerification;
+        if (deletVerification !== "yes") {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    deleteTheContact() {
+        let delPlace = this.choseContact - 1;
+        contactList.splice(delPlace, delPlace);
+        }
+}
 //
 class creatContact { // used for create one contact with 3 different information
     constructor(name = prompt("Enter the name !"), surname = prompt("Enter the surname !"), about = prompt("Enter optional info !")) {
@@ -39,9 +60,26 @@ while (power === 1) { // if power = 0 program stop
         }
     } else if (ask === "2") {
         console.log(`Here is your contact list ! (you have ${contactList.length} contact)`); // message destined to user with number of contact
-        contactList.forEach(function (element) { // print contactList content for each thing in it
-            console.log(element);
-        })
-
+        for (let i = 0; i < contactList.length; i++) { //
+            contactPosition = i;
+            console.log(`${contactPosition + 1}` + contactList[i]);
+        }
+    }
+    else if (ask === "3") {
+        console.log(`Here is your contact list ! Which contact you need to delete `);
+        for (let i = 0; i < contactList.length; i++) { //
+            contactPosition = i;
+            console.log(`${contactPosition + 1}` + contactList[i]);
+        }
+        const deleteOneContact = new deleteContact();
+        let place = deleteOneContact.getContactPlace() + 1;
+        deleteOneContact.getContactPlace();
+        if (deleteOneContact.verification() === true) {
+            deleteOneContact.deleteTheContact();
+            console.log(`The contact ${place} has been deleted !`);
+        }
+        else {
+            console.log(`You was rejected the request !`);
+        }
     }
 }
