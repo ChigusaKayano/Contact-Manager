@@ -6,20 +6,24 @@ let power = 1; // used for start the program | if power = 0 program stop
 let contactList = []; // create a list for content all contact
 //
 class deleteContact {
-    constructor(choseContact = prompt("Please Choose contact than you want delete !")) {
+    constructor(choseContact = prompt(`Please Choose contact than you want delete !`)) {
         this.choseContact = choseContact;
+    }
+    getContactPlace() {
+        return this.choseContact - 1;
     }
     verification(deletVerification = prompt(`Please confirm delete contact (enter "yes")`)) {
         this.deletVerification = deletVerification;
         if (deletVerification !== "yes") {
+            return false;
+        } else {
             return true;
         }
-        else {
-            return false;
-        }
     }
-
-
+    deleteTheContact() {
+        let delPlace = this.choseContact - 1;
+        contactList.splice(delPlace, delPlace);
+        }
 }
 //
 class creatContact { // used for create one contact with 3 different information
@@ -57,14 +61,25 @@ while (power === 1) { // if power = 0 program stop
     } else if (ask === "2") {
         console.log(`Here is your contact list ! (you have ${contactList.length} contact)`); // message destined to user with number of contact
         for (let i = 0; i < contactList.length; i++) { //
-            let contactPosition = i;
+            contactPosition = i;
             console.log(`${contactPosition + 1}` + contactList[i]);
         }
     }
     else if (ask === "3") {
         console.log(`Here is your contact list ! Which contact you need to delete `);
         for (let i = 0; i < contactList.length; i++) { //
-            console.log(`${i++}` + contactList[i]);
+            contactPosition = i;
+            console.log(`${contactPosition + 1}` + contactList[i]);
+        }
+        const deleteOneContact = new deleteContact();
+        let place = deleteOneContact.getContactPlace() + 1;
+        deleteOneContact.getContactPlace();
+        if (deleteOneContact.verification() === true) {
+            deleteOneContact.deleteTheContact();
+            console.log(`The contact ${place} has been deleted !`);
+        }
+        else {
+            console.log(`You was rejected the request !`);
         }
     }
 }
